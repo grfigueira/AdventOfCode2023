@@ -29,11 +29,11 @@ fn part1() {
                     _num.push(j as i16);
                 }
 
-                if is_part_number(_num.clone(), i as i16, input_matrix.clone()) {
+                if is_part_number(&_num, i as i16, &input_matrix) {
                     let mut _num_str = String::new();
 
-                    for x in _num.clone() {
-                        _num_str.push(input_matrix[i][x as usize]);
+                    for x in &_num {
+                        _num_str.push(input_matrix[i][*x as usize]);
                     }
 
                     let _actual_num = _num_str.parse::<i32>().unwrap();
@@ -49,7 +49,7 @@ fn part1() {
     println!("Result = {}", _res);
 }
 
-fn is_part_number(mut _num: Vec<i16>, _y_coord: i16, matrix: Vec<Vec<char>>) -> bool {
+fn is_part_number(mut _num: &Vec<i16>, _y_coord: i16, matrix: &Vec<Vec<char>>) -> bool {
 
     let mut _res: bool = false;
 
@@ -83,8 +83,7 @@ fn part2() {
 
     let mut _res: i32 = 0;
 
-    // Vector that a triple of (x, y, Vec<i32>) where Vec<i32> is the part numbers
-    // and x, y are the coordinates of the '*'character
+    // Maps the coordinates of the '*' character to the part numbers
     let mut _gears: HashMap<(i16, i16), Vec<i32>> = HashMap::new();
 
     for (i, line) in input_matrix.iter().enumerate() {
@@ -98,9 +97,9 @@ fn part2() {
                     _num_x_coords.push(j as i16);
                 }
                 is_gear(
-                    _num_x_coords.clone(),
+                    &_num_x_coords,
                     i as i16,
-                    input_matrix.clone(),
+                    &input_matrix,
                     &mut _gears,
                 );
                 _num_x_coords.clear();
@@ -119,9 +118,9 @@ fn part2() {
 }
 
 fn is_gear(
-    mut _num: Vec<i16>,
+    _num: &Vec<i16>,
     y_coord: i16,
-    matrix: Vec<Vec<char>>,
+    matrix: &Vec<Vec<char>>,
     _gears: &mut HashMap<(i16, i16), Vec<i32>>,
 ) -> bool {
     for x in _num[0] - 1.._num.last().unwrap() + 2 {
@@ -138,8 +137,8 @@ fn is_gear(
 
                 let mut _num_str = String::new();
 
-                for x_coord in _num.clone() {
-                    _num_str.push(matrix[y_coord as usize][x_coord as usize]);
+                for x_coord in _num {
+                    _num_str.push(matrix[y_coord as usize][*x_coord as usize]);
                 }
 
                 let _actual_num = _num_str.parse::<i32>().unwrap();
