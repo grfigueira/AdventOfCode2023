@@ -5,7 +5,7 @@ use std::time::Instant;
 fn main() {
     let start = Instant::now();
     part2();
-    println!("-- Execution time = {:?} --", start.elapsed());
+    println!("\n-- Execution time = {:?} --", start.elapsed());
 }
 
 #[allow(dead_code)]
@@ -114,5 +114,5 @@ fn part2(){
         res += _min_colors.iter().fold(1, |acc, &x| acc*x);
         println!("Game {}, has min_colors = {:?}, and the multiplication is {}", i, _min_colors, _min_colors.iter().fold(1, |acc, &x| acc*x));
     }
-    println!("The sum of powers {}", res)
+    println!("\nThe sum of powers {}", res)
 }
