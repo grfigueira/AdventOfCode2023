@@ -28,6 +28,7 @@ fn main() {
     part2();
 }
 
+#[allow(dead_code)]
 fn part1() {
     let mut _res: i32 = 0;
     let input: String = fs::read_to_string("input.txt").expect("Should have read the input");
@@ -55,6 +56,7 @@ fn part1() {
     println!("The sum of the calibration values is: {}", _res);
 }
 
+#[allow(dead_code)]
 fn part2() {
     let input: String = fs::read_to_string("input.txt").expect("Should have read the input");
 
